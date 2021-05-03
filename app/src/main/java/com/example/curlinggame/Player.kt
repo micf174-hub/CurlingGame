@@ -1,21 +1,18 @@
 package com.example.curlinggame
-
+import CurlingView
 import android.graphics.Paint
 import android.graphics.Canvas
-import android.graphics.PointF
-import com.example.curlinggame.CurlingView
+import android.graphics.RectF
 
-class Player (var canonBaseRadius: Float, var canonLongueur: Float, hauteur: Float, var largeur: Float, val view: CurlingView) {
-    val curlingPaint = Paint()
-    var finCanon = PointF(canonLongueur, hauteur)
+
+class Player (var lsquareP: Float, var lsquareLP : Float, val view : CurlingView) {
+
+    val playerPaint = Paint()
+    val r = RectF(view.width / 2 - 10f, lsquareP, view.width / 2 + 10f, 0f)
+    val r1 = RectF(view.width / 2 - 5f, lsquareP + lsquareLP, view.width / 2 + 5f, lsquareP)
+
     fun draw(canvas: Canvas) {
-        canonPaint.strokeWidth = largeur * 1.5f
-        canvas.drawLine(0f, view.screenHeight/2, finCanon.x,
-            finCanon.y, canonPaint)
-        canvas.drawCircle(0f, view.screenHeight/2, canonBaseRadius,
-            canonPaint)
-    }
-    fun setFinCanon(hauteur: Float) {
-        finCanon.set(canonLongueur, hauteur)
+        canvas.drawRect(r, playerPaint)
+        canvas.drawRect(r1, playerPaint)
     }
 }
