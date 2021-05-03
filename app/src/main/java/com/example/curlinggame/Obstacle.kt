@@ -1,6 +1,16 @@
 package com.example.curlinggame
+
 import java.util.*
 
-open class Obstacle (var rayonO : Float){
+
+open class Obstacle (){
     val random = Random()
+
+    class ObstacleC(){
+
+    }
+
+    class ObstacleR(){
+
+    }
 }
