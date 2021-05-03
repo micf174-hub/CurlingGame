@@ -1,4 +1,12 @@
 package com.example.curlinggame
 
-class Cible (var rayonC : Float){
+import android.graphics.Canvas
+import java.util.*
+
+class Cible (){
+    val random = Random()
+
+    fun draw(canvas: Canvas){
+
+    }
 }

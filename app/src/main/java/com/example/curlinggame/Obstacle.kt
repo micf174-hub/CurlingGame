@@ -1,5 +1,6 @@
 package com.example.curlinggame
 
+import android.graphics.Canvas
 import java.util.*
 
 
@@ -11,6 +12,10 @@ open class Obstacle (){
     }
 
     class ObstacleR(){
+
+    }
+
+    fun draw(canvas: Canvas?) {
 
     }
 }
