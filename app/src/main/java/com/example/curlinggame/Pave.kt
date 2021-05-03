@@ -13,6 +13,6 @@ class Pave (var x1 : Float, var y1 : Float, var rayonP : Float) {
 
     fun draw(canvas: Canvas?) {
         pavePaint.color = color
-        canvas?.drawCircle(r, pavePaint)
+        canvas?.drawOval(r, pavePaint)
     }
 }
