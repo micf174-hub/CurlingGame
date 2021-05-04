@@ -22,17 +22,17 @@ class Cible (var x1 : Float, var y1 : Float, var rayonC : Float) {
             NB_C++
             if (NB_R == 0) {
                 ciblePaint.color = Color.YELLOW
-                canvas?.drawRect(r, ciblePaint)
+                canvas.drawRect(r, ciblePaint)
                 canvas.drawText("5", x1, y1, ciblePaint)
             }
             else if (NB_R == 1) {
                 ciblePaint.color = Color.RED
-                canvas?.drawRect(r, ciblePaint)
+                canvas.drawRect(r, ciblePaint)
                 canvas.drawText("10", x1, y1, ciblePaint)
             }
             else if (NB_R == 2) {
                 ciblePaint.color = Color.BLACK
-                canvas?.drawOval(r, ciblePaint)
+                canvas.drawOval(r, ciblePaint)
                 canvas.drawText("10", x1, y1, ciblePaint)
             }
         }
