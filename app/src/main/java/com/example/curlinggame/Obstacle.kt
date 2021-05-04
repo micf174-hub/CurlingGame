@@ -17,9 +17,8 @@ open class Obstacle () {
 
         fun draw(canvas: Canvas?) {
             ObstaclecPaint.color = color1
-            if (canvas != null) {
-                canvas.drawRect(r1, ObstaclecPaint)
-            }
+            canvas?.drawRect(r1, ObstaclecPaint)
+
         }
     }
 
