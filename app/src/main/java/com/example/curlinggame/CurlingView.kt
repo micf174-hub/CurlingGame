@@ -8,20 +8,20 @@ import android.util.DisplayMetrics
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import java.util.*
-
-class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr){
+class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable{
 
     lateinit var canvas = Canvas
 
-    val displayMetrics = DisplayMetrics()
-    windowManager.defaultDisplay.getMetrics(displayMetrics)
+    var width = 0f
+    var height = 0f
 
-    var width = displayMetrics.widthPixels
-    var height = displayMetrics.heightPixels
 
-    (Activity) getContext()).getWindowManager()
-    .getDefaultDisplay()
-    .getMetrics(displayMetrics);
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        width = w.toFloat()
+        height = h.toFloat()
+
     override fun onTouchEvent(){
 
     }
