@@ -10,7 +10,7 @@ import android.view.SurfaceView
 import java.util.*
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable{
 
-    lateinit var canvas = Canvas
+    lateinit var canvas : Canvas
 
     var width = 0f
     var height = 0f
