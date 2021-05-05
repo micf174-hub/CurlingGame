@@ -10,7 +10,7 @@ class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        curlingView = findViewById<CurlingView>(R.id.vMain)
+        curlingView = findViewById<CurlingView>(R.id.OUI)
     }
 
     override fun onPause() {
