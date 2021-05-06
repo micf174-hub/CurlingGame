@@ -13,7 +13,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var width = 0f
     var height = 0f
     var drawing = false
-    lateinit var thread = Thread
+    lateinit var thread : Thread
     val player = Player(0f, 0f, this)
     val obstacle1 = Obstacle.Obstaclec(0f, 0f, 0f)
     val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f)
