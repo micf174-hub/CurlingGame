@@ -82,9 +82,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             }
         }
     }
-
-
-
         override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
 
         }
