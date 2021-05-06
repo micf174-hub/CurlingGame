@@ -15,9 +15,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var drawing = false
     lateinit var thread : Thread
     val player = Player(0f, 0f, this)
-    val obstacle1 = Obstacle.Obstaclec(0f, 0f, 0f)
-    val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f)
-    val cible = Cible(0f, 0f, 0f)
+    val obstacle1 = Obstacle.Obstaclec(0f, 0f, 0f,this)
+    val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f,this)
+    val cible = Cible(0f, 0f, 0f,this)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
 
@@ -35,7 +35,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         thread = Thread(this)
         thread.start()
     }
-
     override fun run() {
         while (drawing) {
             draw()

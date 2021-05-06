@@ -13,9 +13,9 @@ class Player (var lsquareP: Float, var lsquareLP : Float, val view : CurlingView
     val r1 = RectF(view.width / 2 - view.width/20, lsquareP + lsquareLP, view.width / 2 + view.width/20, lsquareP)
     val color = Color.BLACK
 
-    fun draw(canvas: Canvas) {
+    fun draw(canvas: Canvas?) {
         playerPaint.color = color
-        canvas.drawRect(r, playerPaint)
-        canvas.drawRect(r1, playerPaint)
+        canvas?.drawRect(r, playerPaint)
+        canvas?.drawRect(r1, playerPaint)
     }
 }
