@@ -19,7 +19,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f)
     val cible = Cible(0f, 0f, 0f)
     val pave = Pave(0f, 0f, 0f,this)
-    val paveE = pave.OnScreen(pave.r2)
+    val paveE = pave.OnScreen()
 
 
     init    {
