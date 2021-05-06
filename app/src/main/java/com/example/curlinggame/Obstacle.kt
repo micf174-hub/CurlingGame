@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-open class Obstacle () {
+class Obstacle () {
 
     class Obstaclec(var x1: Float, var y1: Float, var rayonO1: Float) {
         val ObstaclecPaint = Paint()
