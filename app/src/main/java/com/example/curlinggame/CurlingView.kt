@@ -23,6 +23,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val paveE = pave.OnScreen()
 
 
+
     init    {
         FD.color = Color.GREEN
     }

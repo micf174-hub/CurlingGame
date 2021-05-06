@@ -3,7 +3,7 @@ package com.example.curlinggame
 import android.graphics.*
 import java.util.*
 
-class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : CurlingView) {
+open class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : CurlingView) {
     val random = Random()
     val pavePaint = Paint()
     val r = RectF(x1, y1, x1 + (2 * rayonP), y1 - (2 * rayonP))
@@ -11,9 +11,21 @@ class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : Curli
     var t1 = Obstacle.Obstaclec().r1
     var t2 = Obstacle.Obstacler().r2
     var t3 = Obstacle.Obstacleg().r3
+    var dx: Int
+    var dy: Int
+
+    init {
+        if (random.nextDouble() > 0.5) dx = 1 else dx = -1
+        if (random.nextDouble() < 0.5) dy = 1 else dy = -1
+    }
     fun draw(canvas: Canvas?) {
         pavePaint.color = color
         canvas?.drawOval(r, pavePaint)
+    }
+
+    fun Bouge(canvas: Canvas?) {
+        r.offset(5.0F * dx, 5.0F * dy)
+        draw(canvas)
     }
 
     fun OnScreen() : Boolean {
@@ -21,5 +33,13 @@ class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : Curli
     }
     fun ToucheObstacle () : Boolean {
         return(r.intersect(t1) || r.intersect(t2) || r.intersect(t3) )
+    }
+
+    fun Disparait () {
+
+    }
+
+    fun Rebondit () {
+
     }
 }
