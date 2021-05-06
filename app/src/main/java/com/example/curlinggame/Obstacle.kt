@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class Obstacle () {
+class Obstacle (var z1 : Class, var z2 : Class) {
 
     class Obstaclec(var x1: Float, var y1: Float, var rayonO1: Float) {
         val ObstaclecPaint = Paint()
@@ -23,7 +23,6 @@ class Obstacle () {
         val ObstaclerPaint = Paint()
         val color2 = Color.RED
         val r2 = RectF(x1, y1, x1 + (2 * rayonO2), y1 - (2 * rayonO2))
-
         fun draw(canvas: Canvas?) {
             ObstaclerPaint.color = color2
             canvas?.drawOval(r2, ObstaclerPaint)

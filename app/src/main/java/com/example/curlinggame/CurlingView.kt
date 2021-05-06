@@ -21,7 +21,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
 
-
     init    {
         FD.color = Color.GREEN
     }
@@ -73,13 +72,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                     canvas.height.toFloat(), FD)
             player.draw(canvas)
-            if (paveE == true) {
+            if (paveE == true)
                 pave.draw(canvas)
                 obstacle1.draw(canvas)
                 obstacle2.draw(canvas)
                 cible.draw(canvas)
                 holder.unlockCanvasAndPost(canvas)
-            }
         }
     }
         override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
