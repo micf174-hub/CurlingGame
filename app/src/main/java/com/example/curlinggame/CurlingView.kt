@@ -13,10 +13,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var width = 0f
     var height = 0f
     var drawing = false
-    lateinit var thread = Thread
+    lateinit var thread : Thread
     val player = Player(0f, 0f, this)
     val obstacle1 = Obstacle.Obstaclec(0f, 0f, 0f)
     val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f)
+    val obstacle3 = Obstacle.Obstacleg (0f, 0f, 0f)
     val cible = Cible(0f, 0f, 0f)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
@@ -55,13 +56,10 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.y1 = (0f)
         pave.rayonP = (w/64f)
 
-        obstacle1.x1 = (h /20f)
-        obstacle1.y1 = (h /20f)
-        obstacle1.rayonO1 = (w/100f)
+        obstacle1.rayonO1 = (h /124f)
+        obstacle2.rayonO2 = (h/124f)
+        obstacle3.rayonO3 = (h/124f)
 
-        obstacle2.x1 = (w/50f)
-        obstacle2.y1 = (w/50f)
-        obstacle2.rayonO2 = (w/100f)
 
         cible.x1 = (w/5f)
         cible.y1 = (h/5f)
