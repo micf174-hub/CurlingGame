@@ -13,11 +13,22 @@ open class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : 
     var t3 = Obstacle.Obstacleg().r3
     var dx: Int
     var dy: Int
+    var canonpaveVitesseX = 0f
+    var canonpaveVitesseY = 0f
+    var canonpaveOnScreen = true
+    var canonpaveVitesse = 0f
 
     init {
         if (random.nextDouble() > 0.5) dx = 1 else dx = -1
         if (random.nextDouble() < 0.5) dy = 1 else dy = -1
     }
+
+    fun launch(angle: Double) {
+        canonpaveVitesseX=(canonpaveVitesse*Math.sin(angle)).toFloat()
+        canonpaveVitesseY=(-canonpaveVitesse*Math.cos(angle)).toFloat()
+        canonpaveOnScreen = true
+    }
+
     fun draw(canvas: Canvas?) {
         pavePaint.color = color
         canvas?.drawOval(r, pavePaint)
