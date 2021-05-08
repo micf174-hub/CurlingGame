@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import java.util.*
 
-class Cible (var x1 : Float, var y1 : Float, var rayonC : Float) {
+class Cible (var x1 : Float, var y1 : Float, var rayonC : Float, var view : CurlingView) {
     val random = Random()
     val ciblePaint = Paint()
     val r = RectF(x1, y1, x1 + (2 * rayonC), y1 - (2 * rayonC))
