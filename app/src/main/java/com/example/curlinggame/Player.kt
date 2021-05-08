@@ -9,8 +9,8 @@ import android.graphics.RectF
 class Player (var lsquareP: Float, var lsquareLP : Float, val view : CurlingView) {
 
     val playerPaint = Paint()
-    val r = RectF(view.width / 2 - view.width/10, lsquareP, view.width / 2 + view.width/10, 0f)
-    val r1 = RectF(view.width / 2 - view.width/20, lsquareP + lsquareLP, view.width / 2 + view.width/20, lsquareP)
+    val r = RectF(view.width / 2, lsquareP, view.width / 2, 0f)
+    val r1 = RectF(view.width / 2 , lsquareP + lsquareLP, view.width / 2, lsquareP)
     val color = Color.BLACK
 
     fun draw(canvas: Canvas?) {

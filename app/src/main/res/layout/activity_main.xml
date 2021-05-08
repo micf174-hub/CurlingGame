@@ -10,7 +10,7 @@
     <com.example.curlinggame.CurlingView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:id="@+id/OUI"
+        android:id="@+id/vMain"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
