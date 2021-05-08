@@ -15,8 +15,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var drawing = false
     lateinit var thread : Thread
     val player = Player(0f, 0f, this)
-    val obstacle1 = Obstacle.Obstaclec(0f, 0f, 0f)
-    val obstacle2 = Obstacle.Obstacler(0f, 0f, 0f)
+    val obstacle1 = ObstacleC(0f, this)
+    val obstacle2 = ObstacleR(0f,this)
+    val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, 0f, 0f)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
@@ -47,26 +48,19 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         width = w.toFloat()
         height = h.toFloat()
 
-        player.lsquareP = (9 *h/10f)
-        player.lsquareLP = (8 *h/10f)
+        player.hauteur1 = (9 *h/10f)
+        player.hauteur2= (8 *h/10f)
         player.setRect()
 
-        pave.x1 = (w/2f)
-        pave.y1 = (0f)
-        pave.rayonP = (w/64f)
+        obstacle1.rayon1 = (w/7f)
+        obstacle1.setRect()
 
+        obstacle2.rayon2 = (w/7f)
+        obstacle2.setRect()
 
-        obstacle1.x1 = (h /20f)
-        obstacle1.y1 = (h /20f)
-        obstacle1.rayonO1 = (w/100f)
+        obstacle3.rayon3 = (w/7f)
+        obstacle3.setRect()
 
-        obstacle2.x1 = (w/50f)
-        obstacle2.y1 = (w/50f)
-        obstacle2.rayonO2 = (w/100f)
-
-        cible.x1 = (w/5f)
-        cible.y1 = (h/5f)
-        cible.rayonC = (w/50f)
     }
     fun draw() {
         if (holder.surface.isValid) {
@@ -74,6 +68,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                     canvas.height.toFloat(), FD)
             player.draw(canvas)
+            obstacle1.draw(canvas)
+            obstacle2.draw(canvas)
+            obstacle3.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
