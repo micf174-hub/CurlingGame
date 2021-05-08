@@ -12,7 +12,6 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
         curlingView = findViewById<CurlingView>(R.id.OUI)
     }
-
     override fun onPause() {
         super.onPause()
         curlingView.pause()
@@ -22,4 +21,5 @@ class MainActivity: AppCompatActivity() {
         super.onResume()
         curlingView.resume()
     }
+
 }

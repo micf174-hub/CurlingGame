@@ -6,8 +6,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 
 class Obstacle () {
-
-    class Obstaclec(var x1: Float, var y1: Float, var rayonO1: Float, val view: CurlingView) {
+    class Obstaclec(var x1: Float, var y1: Float, var rayonO1: Float) {
         val ObstaclecPaint = Paint()
         val color1 = Color.GRAY
         val r1 = RectF(x1, y1, x1 + (2 * rayonO1), y1 - (2 * rayonO1))
@@ -19,7 +18,7 @@ class Obstacle () {
         }
     }
 
-    class Obstacler(var x1: Float, var y1: Float, var rayonO2: Float, val view : CurlingView) {
+    class Obstacler(var x1: Float, var y1: Float, var rayonO2: Float) {
         val ObstaclerPaint = Paint()
         val color2 = Color.RED
         val r2 = RectF(x1, y1, x1 + (2 * rayonO2), y1 - (2 * rayonO2))
