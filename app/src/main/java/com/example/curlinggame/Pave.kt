@@ -34,7 +34,9 @@ open class Pave (var x1 : Float, var y1 : Float, var rayonP : Float, val view : 
     fun ToucheObstacle () : Boolean {
         return(r.intersect(t1) || r.intersect(t2) || r.intersect(t3) )
     }
+    fun Apparait () {
 
+    }
     fun Disparait () {
 
     }

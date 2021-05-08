@@ -3,9 +3,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Point
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -82,6 +85,32 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         }
     }
 
+    override fun onTouchEvent(e: MotionEvent): Boolean {
+        val action = e.action
+        if (action == MotionEvent.ACTION_DOWN
+                || action == MotionEvent.ACTION_MOVE) {
+            fireCanon(e)
+        }
+        return true
+    }
+    fun fireCanon(event: MotionEvent) {
+        if (! pave.OnScreen()) {
+            val angle = alignCanon(event)
+            pave.launch(angle)
+            ++Apparait()
+        }
+    }
+    fun alignCanon(event: MotionEvent): Double {
+        val touchPoint = Point(event.x.toInt(), event.y.toInt())
+        val centerMinusY = height / 2 - touchPoint.y
+        var angle = 0.0
+        if (centerMinusY != 0.0f)
+            angle = Math.atan((touchPoint.x).toDouble()/ centerMinusY)
+        if (touchPoint.y > height / 2)
+            angle += Math.PI
+        player.align(angle)
+        return angle
+    }
 
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
