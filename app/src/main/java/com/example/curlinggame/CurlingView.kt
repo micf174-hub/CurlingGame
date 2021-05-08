@@ -47,12 +47,14 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         width = w.toFloat()
         height = h.toFloat()
 
-        player.lsquareP = (w/2f)
-        player.lsquareLP = (w/5f)
+        player.lsquareP = (9 *h/10f)
+        player.lsquareLP = (8 *h/10f)
+        player.setRect()
 
         pave.x1 = (w/2f)
         pave.y1 = (0f)
         pave.rayonP = (w/64f)
+
 
         obstacle1.x1 = (h /20f)
         obstacle1.y1 = (h /20f)
@@ -71,7 +73,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             canvas = holder.lockCanvas()
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                     canvas.height.toFloat(), FD)
-            cible.draw(canvas)
+            player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
