@@ -1,16 +1,27 @@
 package com.example.curlinggame
 
+
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-open class TestRect(var view: CurlingView) {
-    val TestPaint = Paint()
-    val r1 = RectF(0f, 0f,  view.width, view.height/2)
+class TestRect (var obstacleDistance: Float, var obstacleDebut: Float, var obstacleFin: Float, var initialObstacleVitesse: Float, var width: Float, var view: CurlingView)
+{
+    val obstacle = RectF(obstacleDistance, obstacleDebut,
+        obstacleDistance + width, obstacleFin)
+    val obstaclePaint = Paint()
+    var obstacleVitesse= initialObstacleVitesse
+
+    fun setRect() {
+        obstacle.set(obstacleDistance, obstacleDebut,
+            obstacleDistance + width, obstacleFin)
+        obstacleVitesse= initialObstacleVitesse
+    }
+
 
     fun draw(canvas: Canvas) {
-        TestPaint.color = Color.BLACK
-        canvas.drawRect(r1, TestPaint)
+        obstaclePaint.color = Color.RED
+        canvas.drawRect(obstacle, obstaclePaint)
     }
 }

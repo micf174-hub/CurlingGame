@@ -18,4 +18,7 @@ class Player (var lsquareP: Float, var lsquareLP : Float, var view : CurlingView
         canvas?.drawRect(r, playerPaint)
         canvas?.drawRect(r1, playerPaint)
     }
+    fun setRect() {
+        r.set(view.width , lsquareP, view.width/2, 0f)
+    }
 }
