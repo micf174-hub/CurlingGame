@@ -14,10 +14,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var height = 0f
     var drawing = false
     lateinit var thread : Thread
-    val test = TestRect(0f,0f,0f,0f,this)
-    val x = Pave(0f,0f,0f,this)
-    val pavee = x.OnScreen()
-
+    val test = TestRect(this)
 
     init    {
         FD.color = Color.GREEN
@@ -43,12 +40,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         super.onSizeChanged(w, h, oldw, oldh)
         width = w.toFloat()
         height = h.toFloat()
-
-        test.obstacleDistance = (w/2f)
-        test.obstacleDebut = (h/2f)
-        test.obstacleFin = (h/2+10f)
-        test.width = (h / 24f)
-
     }
     fun draw() {
         if (holder.surface.isValid) {
