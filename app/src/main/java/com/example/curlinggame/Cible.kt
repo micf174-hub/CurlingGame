@@ -8,8 +8,7 @@ class Cible (var rayonC : Float, val  view: CurlingView) {
     val ciblePaint = Paint()
     val textPaint = Paint()
     var NB_C = 0
-    var rand1 = random.nextFloat() * view.width
-    var rand2 = random.nextFloat() * view.height
+
     var r4 = RectF(rand1 - rayonC,rand2-rayonC, rand1 + rayonC, rand2 + rayonC)
 
 
