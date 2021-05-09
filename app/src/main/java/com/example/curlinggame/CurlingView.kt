@@ -20,8 +20,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, this)
-    val pave = Pave(0f, 0f, 0f,this)
-    val paveE = pave.OnScreen()
+    val pave = Pave( 0f,0f,this)
 
     init    {
         FD.color = Color.GREEN
@@ -64,6 +63,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
         cible.rayonC = (w/10f)
         cible.setRect()
+
+        pave.rayonP = (w/10f)
+        pave.setRect()
     }
     fun draw() {
         if (holder.surface.isValid) {
@@ -75,6 +77,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             obstacle2.draw(canvas)
             obstacle3.draw(canvas)
             cible.draw(canvas)
+            pave.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }

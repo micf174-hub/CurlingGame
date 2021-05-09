@@ -19,22 +19,25 @@ class Cible (var rayonC : Float, val  view: CurlingView) {
     fun draw(canvas: Canvas) {
         val NB_R = rand(0, 2)
         var NB_C = 0
+        val rand3 = rand1
+        val rand4 = rand2
+        var r5 = RectF( rand3 - rayonC,rand4-rayonC, rand3 + rayonC, rand4 + rayonC)
         while (NB_C < 10) {
             NB_C++
             if (NB_R == 0) {
                 ciblePaint.color = Color.YELLOW
-                canvas.drawRect(r4, ciblePaint)
-                canvas.drawText("5", rand1 , rand2, ciblePaint)
+                canvas.drawRect(r5, ciblePaint)
+                canvas.drawText("5", rand3 , rand4, ciblePaint)
             }
             else if (NB_R == 1) {
                 ciblePaint.color = Color.RED
-                canvas.drawRect(r4, ciblePaint)
-                canvas.drawText("10", rand1, rand2, ciblePaint)
+                canvas.drawRect(r5, ciblePaint)
+                canvas.drawText("10", rand3, rand4, ciblePaint)
             }
             else if (NB_R == 2) {
                 ciblePaint.color = Color.BLUE
-                canvas.drawOval(r4, ciblePaint)
-                canvas.drawText("10", rand1, rand2, ciblePaint)
+                canvas.drawOval(r5, ciblePaint)
+                canvas.drawText("10", rand3, rand4, ciblePaint)
             }
         }
     }
