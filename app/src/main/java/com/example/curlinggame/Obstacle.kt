@@ -12,7 +12,7 @@ open class Obstacle (val lepave: Pave) {
         println("BIP")
         }
     }
-    open class Obstaclec(var rayonO1: Float, val view: CurlingView) : Obstacle() {
+    open class Obstaclec(var rayonO1: Float, view: this) : Obstacle() {
         val ObstaclecPaint = Paint()
         val color1 = Color.GRAY
         var r1 = RectF(view.width/3, 2*view.height/3 , view.width/3 + rayonO1, 2*view.height/3 - rayonO1)
@@ -28,7 +28,7 @@ open class Obstacle (val lepave: Pave) {
 
     }
 
-    open class Obstacler(var rayonO2: Float, val view: CurlingView) : Obstacle() {
+    open class Obstacler(var rayonO2: Float, view: this) : Obstacle() {
         val ObstaclerPaint = Paint()
         val color2 = Color.RED
         var r2 = RectF(2*view.width/3, 2*view.height/3, 2*view.width/3 + rayonO2, 2*view.height/3 - rayonO2)
@@ -42,7 +42,7 @@ open class Obstacle (val lepave: Pave) {
         }
     }
 
-    open  class Obstacleg(var rayonO3: Float, val view: CurlingView) : Obstacle () {
+    open  class Obstacleg(var rayonO3: Float, view: this) : Obstacle () {
         val ObstaclerPaint = Paint()
         val color3 = Color.BLUE
         val r3 = RectF(view.width /2, 2*view.height/3, view.width/2 + rayonO3, 2*view.height/3 + rayonO3)
