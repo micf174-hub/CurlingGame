@@ -7,7 +7,12 @@ import android.graphics.RectF
 
 class ObstacleR( var rayon2: Float , val view : CurlingView) {
     val obstacleRPaint = Paint()
-    val r2 = RectF(view.width/2 - view.width/10, view.height/2, view.width/2 + view.width/10,view.height/2 + rayon2 )
+    val r2 = RectF(
+            view.width/2 - view.width/10,
+            view.height/2,
+            view.width/2 + view.width/10,
+            view.height/2 + rayon2
+    )
 
     fun draw(canvas: Canvas?) {
         obstacleRPaint.color = Color.RED
@@ -16,6 +21,10 @@ class ObstacleR( var rayon2: Float , val view : CurlingView) {
 
     fun setRect() {
         r2.set(
-            view.width/2 - view.width/10, view.height/2, view.width/2 + view.width/10,view.height/2 + rayon2 )
+                view.width/2 - view.width/10,
+                view.height/2,
+                view.width/2 + view.width/10,
+                view.height/2 + rayon2
+        )
     }
 }
