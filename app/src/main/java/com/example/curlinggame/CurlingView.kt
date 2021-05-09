@@ -64,7 +64,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.rayonC = (w/10f)
         cible.setRect()
 
-        pave.rayonP = (w/10f)
+        pave.rayonP = (w/30f)
+        pave.hauteur = (95 *h/100f)
         pave.setRect()
     }
     fun draw() {
