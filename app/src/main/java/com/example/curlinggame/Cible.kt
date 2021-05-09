@@ -39,6 +39,6 @@ class Cible (var hauteur1 : Float, var largeur1: Float, var hauteur2: Float, var
     }
 
     fun setRect() {
-        r4.set(rand1 - rayonC,rand2-rayonC, rand1 + rayonC, rand2 + rayonC)
+        r1.set(rand1 - rayonC,rand2-rayonC, rand1 + rayonC, rand2 + rayonC)
     }
 }
