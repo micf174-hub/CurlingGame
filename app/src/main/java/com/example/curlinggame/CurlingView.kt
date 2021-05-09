@@ -3,7 +3,9 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Point
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import kotlin.random.Random
@@ -15,12 +17,13 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var height = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(0f, 0f, this)
+    val player = Player(0f, 0f, 0f,this)
     val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
     val pave = Pave( 0f,0f,0f,this)
+    var NB_S = 0
 
     init    {
         FD.color = Color.GREEN
@@ -38,8 +41,13 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
 
     override fun run() {
+        var previousFrameTime = System.currentTimeMillis()
         while (drawing) {
+            val currentTime = System.currentTimeMillis()
+            val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
+            updatePositions(elapsedTimeMS)
             draw()
+            previousFrameTime = currentTime
         }
     }
 
@@ -50,7 +58,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
         player.hauteur1 = (9 *h/10f)
         player.hauteur2= (8 *h/10f)
+        player.epaisseur = (w/20f)
         player.setRect()
+        player.setr1()
 
         obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
@@ -62,16 +72,16 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         obstacle3.setRect()
 
         cible.rayonC = (w/15f)
-        cible.interval = (w/20f)
+        cible.intervalC = (w/20f)
         cible.largeur1 = (w/35f)
         cible.hauteur1 = (w/20f)
-
 
 
         pave.rayonP = (w/30f)
         pave.hauteur = (95 *h/100f)
         pave.largeur = (w/2f)
         pave.setRect()
+
     }
     fun draw() {
         if (holder.surface.isValid) {
@@ -87,6 +97,41 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             holder.unlockCanvasAndPost(canvas)
         }
     }
+
+    fun updatePositions(elapsedTimeMS: Double) {
+        val interval = elapsedTimeMS / 1000.0
+        pave.update(interval)
+    }
+
+    override fun onTouchEvent(e: MotionEvent): Boolean {
+        val action = e.action
+        if (action == MotionEvent.ACTION_DOWN
+                || action == MotionEvent.ACTION_MOVE) {
+            tir(e)
+        }
+        return true
+    }
+
+    fun tir(event: MotionEvent) {
+        if (! pave.OnScreen) {
+            val angle = alignT(event)
+            pave.launch(angle)
+            ++NB_S
+        }
+    }
+
+    fun alignT(event: MotionEvent): Double {
+        val touchPoint = Point(event.x.toInt(), event.y.toInt())
+        val centerMinusY = height / 2 - touchPoint.y
+        var angle = 0.0
+        if (centerMinusY != 0.0f)
+            angle = Math.atan((touchPoint.x).toDouble()/ centerMinusY)
+        if (touchPoint.y > height / 2)
+            angle += Math.PI
+        player.alignement(angle)
+        return angle
+    }
+
         override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
 
         }
