@@ -8,8 +8,8 @@ import android.graphics.RectF
 class ObstacleT(var rayon3: Float, val view: CurlingView) {
     val obstacleTPaint = Paint()
     val r3 = RectF(
-        3*view.width / 4,
-        view.height / 2,
+        3*view.width / 4 - rayon3,
+        view.height / 2 - rayon3,
         3* view.width / 4 + rayon3,
         view.height / 2 + rayon3
     )
@@ -21,8 +21,8 @@ class ObstacleT(var rayon3: Float, val view: CurlingView) {
 
     fun setRect() {
         r3.set(
-            3 * view.width / 4,
-            view.height / 2,
+            3 * view.width / 4 - rayon3,
+            view.height / 2 - rayon3,
             3 * view.width / 4 + rayon3,
             view.height / 2 + rayon3
         )

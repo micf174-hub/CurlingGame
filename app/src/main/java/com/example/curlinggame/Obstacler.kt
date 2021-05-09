@@ -11,7 +11,7 @@ class ObstacleR( var rayon2: Float , val view : CurlingView) {
 
     fun draw(canvas: Canvas?) {
         obstacleRPaint.color = Color.RED
-        canvas?.drawOval(r2, obstacleRPaint)
+        canvas?.drawCircle(view.width/2,view.height/2,rayon2, obstacleRPaint)
     }
 
     fun setRect() {

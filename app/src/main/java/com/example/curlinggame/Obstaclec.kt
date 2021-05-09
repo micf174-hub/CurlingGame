@@ -9,8 +9,8 @@ class ObstacleC(var rayon1: Float, val view: CurlingView) {
     val obstacleCPaint = Paint()
     val r1 = RectF(
             view.width / 4 - rayon1,
-            view.height/2,
-            view.width / 4 ,
+            view.height/2 - rayon1,
+            view.width / 4 + rayon1,
             view.height / 2 + rayon1
         )
 
@@ -20,11 +20,11 @@ class ObstacleC(var rayon1: Float, val view: CurlingView) {
     }
 
     fun setRect() {
-        r1.set(
-                view.width / 4 - rayon1,
-                view.height / 2,
-                view.width / 4 ,
-                view.height / 2 - rayon1)
+        r1.set(view.width / 4 - rayon1,
+            view.height/2 - rayon1,
+            view.width / 4 + rayon1,
+            view.height / 2 + rayon1
+                )
     }
 
     }

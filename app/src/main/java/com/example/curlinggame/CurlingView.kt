@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import kotlin.random.Random
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -18,7 +19,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
-    val cible = Cible(0f, 0f, 0f)
+    val cible = Cible(0f, this)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
 
@@ -52,15 +53,17 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.hauteur2= (8 *h/10f)
         player.setRect()
 
-        obstacle1.rayon1 = (w/7f)
+        obstacle1.rayon1 = (w/10f)
         obstacle1.setRect()
 
-        obstacle2.rayon2 = (w/7f)
+        obstacle2.rayon2 = (w/10f)
         obstacle2.setRect()
 
-        obstacle3.rayon3 = (w/7f)
+        obstacle3.rayon3 = (w/10f)
         obstacle3.setRect()
 
+        cible.rayonC = (w/10f)
+        cible.setRect()
     }
     fun draw() {
         if (holder.surface.isValid) {
@@ -71,6 +74,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             obstacle1.draw(canvas)
             obstacle2.draw(canvas)
             obstacle3.draw(canvas)
+            cible.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
