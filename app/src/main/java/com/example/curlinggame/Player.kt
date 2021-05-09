@@ -3,7 +3,7 @@ package com.example.curlinggame
 import android.graphics.*
 
 
-class Player (var lsquareP: Float, var lsquareLP : Float,  hauteur: Float, val view : CurlingView) {
+class Player(var lsquareP: Float, var lsquareLP: Float, hauteur: CurlingView, val view: CurlingView) {
 
     val playerPaint = Paint()
     val r = RectF(view.width / 2 - view.width/10, lsquareP, view.width / 2 + view.width/10, 0f)

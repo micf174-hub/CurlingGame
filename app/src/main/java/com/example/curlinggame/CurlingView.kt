@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -18,9 +17,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var drawing = false
     lateinit var thread : Thread
     val player = Player(0f, 0f, this)
-    val obstacle1 = Obstaclec(0f, 0f, 0f)
-    val obstacle2 = Obstacler(0f, 0f, 0f)
-    val obstacle3 = Obstacleg (0f, 0f, 0f)
+    val obstacle1 = Obstaclec(0f, 0f)
+    val obstacle2 = Obstacler(0f, 0f)
+    val obstacle3 = Obstacleg (0f, 0f)
     val cible = Cible(0f, 0f, 0f)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
