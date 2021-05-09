@@ -24,6 +24,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val cible = Cible(0f, 0f, 0f)
     val pave = Pave(0f, 0f, 0f,this)
     val paveE = pave.OnScreen()
+    var shotsFired = 0
 
 
 
@@ -97,7 +98,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         if (! pave.OnScreen()) {
             val angle = alignCanon(event)
             pave.launch(angle)
-            ++Apparait()
+            ++shotsFired
         }
     }
     fun alignCanon(event: MotionEvent): Double {
