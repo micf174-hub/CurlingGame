@@ -19,7 +19,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
-    val cible = Cible(0f, this)
+    val cible = Cible(0f, 0f,0f,0f,this)
     val pave = Pave( 0f,0f,0f,this)
 
     init    {
@@ -61,8 +61,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         obstacle3.rayon3 = (w/20f)
         obstacle3.setRect()
 
-        cible.rayonC = (w/20f)
-        cible.setRect()
+        cible.rayonC = (w/15f)
+        cible.interval = (w/20f)
+        cible.largeur1 = (w/35f)
+        cible.hauteur1 = (w/20f)
+
 
 
         pave.rayonP = (w/30f)
