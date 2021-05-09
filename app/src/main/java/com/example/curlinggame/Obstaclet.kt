@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleT(var rayon3: Float, val view: CurlingView) {
+class ObstacleT(var rayon3: Float, val view: CurlingView) : Obstacle(){
     val obstacleTPaint = Paint()
     val r3 = RectF(
         3*view.width / 4 - rayon3,
@@ -17,6 +17,10 @@ class ObstacleT(var rayon3: Float, val view: CurlingView) {
     fun draw(canvas: Canvas?) {
         obstacleTPaint.color = Color.GRAY
         canvas?.drawRect(r3, obstacleTPaint)
+    }
+
+    override fun interaction (){
+
     }
 
     fun setRect() {
