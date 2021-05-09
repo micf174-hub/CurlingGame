@@ -3,14 +3,20 @@ package com.example.curlinggame
 import android.graphics.*
 import java.util.*
 
-class Cible (var rayonC : Float, val  view: CurlingView) {
+class Cible (var hauteur1 : Float, var largeur1: Float, var hauteur2: Float, var largeur2: Float ,var rayonC : Float,var interval : Float, val  view: CurlingView) {
     val random = Random()
     val ciblePaint = Paint()
     val textPaint = Paint()
     var NB_C = 0
 
-    var r4 = RectF(rand1 - rayonC,rand2-rayonC, rand1 + rayonC, rand2 + rayonC)
-
+    init{
+        for(i in 0..5){
+            var r1 = RectF(view.width/20 + (i * interval),view.height/20,view.width/20 + rayonC + (i * interval),view.height/20 + rayonC)
+        }
+        for(i in 0..5){
+            var r2 = RectF(view.width/20 + (i * interval),view.height/15,view.width/20 + rayonC + (i * interval),view.height/15 + rayonC)
+        }
+    }
 
     fun rand(from: Int, to: Int): Int {
         return random.nextInt(to - from) + from
@@ -27,10 +33,8 @@ class Cible (var rayonC : Float, val  view: CurlingView) {
             else if (NB_R == 2) {
                 ciblePaint.color = Color.BLUE
             }
-            var rand1 = random.nextFloat() * view.width
-            var rand2 = random.nextFloat() * view.height
-            var r4 = RectF(rand1 - rayonC,rand2-rayonC, rand1 + rayonC, rand2 + rayonC)
-            canvas.drawRect(r4, ciblePaint)
+
+            canvas.drawRect(r1, ciblePaint)
         }
     }
 
