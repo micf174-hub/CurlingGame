@@ -52,17 +52,18 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.hauteur2= (8 *h/10f)
         player.setRect()
 
-        obstacle1.rayon1 = (w/10f)
+        obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
 
-        obstacle2.rayon2 = (w/10f)
+        obstacle2.rayon2 = (w/20f)
         obstacle2.setRect()
 
-        obstacle3.rayon3 = (w/10f)
+        obstacle3.rayon3 = (w/20f)
         obstacle3.setRect()
 
-        cible.rayonC = (w/10f)
+        cible.rayonC = (w/20f)
         cible.setRect()
+
 
         pave.rayonP = (w/30f)
         pave.hauteur = (95 *h/100f)

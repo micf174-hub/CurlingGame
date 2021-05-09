@@ -13,7 +13,7 @@ class Pave (var rayonP : Float, var hauteur : Float, var largeur : Float, val vi
     }
 
     fun setRect() {
-        r.set(view.width/2-rayonP, hauteur, view.width/2 + rayonP,view.height)
+        r.set(largeur-rayonP, hauteur, largeur + rayonP,view.height)
     }
 
     fun OnScreen() : Boolean {
