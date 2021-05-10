@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleC(var rayon1: Float, val view: CurlingView, var cible: Cible) {
+class ObstacleC(var rayon1: Float, val view: CurlingView) {
     val obstacleCPaint = Paint()
     val r1 = RectF(
             view.width / 4 - rayon1,
@@ -27,9 +27,10 @@ class ObstacleC(var rayon1: Float, val view: CurlingView, var cible: Cible) {
                 )
     }
 
-    fun ChocO1(pave : Pave){
-
+    override fun interaction (){
+        pave.resetPave()
     }
+
 
 
 

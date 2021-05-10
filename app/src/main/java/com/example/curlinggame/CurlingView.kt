@@ -8,8 +8,10 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
+import android.media.SoundPool
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.SparseIntArray
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
@@ -25,7 +27,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     lateinit var thread : Thread
     val player = Player(0f, 0f, 0f,0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
-    val obstacle1 = ObstacleC(0f, this,cible)
+    val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,0f,this,cible)
     val obstacle3 = ObstacleT(0f,this,cible)
     val pave = Pave( this,cible, obstacle1, obstacle2, obstacle3)
@@ -33,6 +35,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var viesRestantes = 3
     var score = 0
     var gameOver = false
+    val soundPool : SoundPool
+    val soundMap : SparseIntArray
     val activity = context as FragmentActivity
 
 
@@ -61,6 +65,10 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             previousFrameTime = currentTime
         }
     }
+    open fun playObstacleSound() {
+        soundPool.play(soundMap.get(0), 1f, 1f, 1, 0, 1f)
+    }
+
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
