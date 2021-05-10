@@ -29,7 +29,7 @@ class ObstacleT(var rayon3: Float, val view: CurlingView,var cible: Cible) {
     }
 
     fun ChocO3(pave : Pave){
-        pave.resetPave()
+        pave.launch(0.0)
 
     }
 

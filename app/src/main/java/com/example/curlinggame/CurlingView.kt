@@ -126,7 +126,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width/2 + touchPoint.x
+        val centerMinusX = width/100 - touchPoint.x
         var angle = 0.0
         if (centerMinusX != 0.0f )
             angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())

@@ -16,8 +16,8 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
     fun launch(angle: Double) {
         paveB.x = view.width / 2f
         paveB.y = view.height - 2 * paveR
-        paveVitesseX = (paveVitesse * Math.sin(angle)).toFloat()
-        paveVitesseY = (paveVitesse * Math.cos(angle)).toFloat()
+        paveVitesseX = -(paveVitesse * Math.sin(angle)).toFloat()
+        paveVitesseY = -(paveVitesse * Math.cos(angle)).toFloat()
         OnScreen = true
     }
 
@@ -26,9 +26,6 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
         canvas?.drawCircle(paveB.x,paveB.y,paveR, pavePaint)
     }
 
-    fun resetPave() {
-        OnScreen = false
-    }
     fun update(interval: Double) {
         if (OnScreen) {
             paveB.x += (interval * paveVitesseX).toFloat()
@@ -38,9 +35,6 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
                 paveVitesseX *= - 1
                 paveB.offset((paveVitesseX * interval).toFloat(),0f)
             }
-            else if(paveB.y + paveR > view.height || paveB.y - paveR < 0) {
-                OnScreen = false
-            }
             else if(paveB.y+ paveR < obstacle1.r1.top && paveB.x + paveR < obstacle1.r1.right && paveB.x + paveR >  obstacle1.r1.left){
                 obstacle1.ChocO1(this)
             }
@@ -48,9 +42,15 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
                 paveVitesseY *= - 1
                 paveB.offset(0f,paveVitesseY*interval.toFloat())
             }
+
             else if(paveB.y+ paveR < obstacle3.r3.top && paveB.x + paveR < obstacle3.r3.right && paveB.x + paveR >  obstacle3.r3.left){
                 obstacle3.ChocO3(this)
             }
+            else if(paveB.y + paveR > view.height || paveB.y - paveR < 0) {
+                OnScreen = false
+            }
+
+
             else if(paveB.y+ paveR < cible.r2.top && paveB.x + paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){
                 cible.ChocC()
             }
