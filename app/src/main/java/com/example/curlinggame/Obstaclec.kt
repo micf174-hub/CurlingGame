@@ -20,6 +20,7 @@ class ObstacleC(var rayon1: Float, view: CurlingView) : Obstacle(rayon1, view) {
     }
 
     override fun interaction (){
+        Pave().launch(angle = 100.0)
 
     }
 
