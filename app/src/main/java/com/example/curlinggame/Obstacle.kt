@@ -1,10 +1,6 @@
 package com.example.curlinggame
 
-import android.media.MediaPlayer
-
-
-open class Obstacle {
-    open fun interaction () {
-
+open class Obstacle (var rayon: Float, val view: CurlingView)
+    fun interaction () {
     }
 }

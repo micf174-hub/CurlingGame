@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleC(var rayon1: Float, val view: CurlingView) : Obstacle() {
+class ObstacleC(var rayon1: Float, view: CurlingView) : Obstacle(rayon1, view) {
     val obstacleCPaint = Paint()
     val r1 = RectF(
             view.width / 4 - rayon1,
