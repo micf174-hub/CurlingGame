@@ -20,9 +20,9 @@ class Pave (val view : CurlingView) {
 
     fun launch(angle: Double) {
         paveB.x = view.width / 2f
-        paveB.y = paveR
-        paveVitesseX = (-paveVitesse * Math.sin(angle)).toFloat()
-        paveVitesseY = (paveVitesse * Math.cos(angle)).toFloat()
+        paveB.y = view.height - 2 * paveR
+        paveVitesseX = (paveVitesse * Math.sin(angle)).toFloat()
+        paveVitesseY = (- paveVitesse * Math.cos(angle)).toFloat()
         OnScreen = true
     }
 
