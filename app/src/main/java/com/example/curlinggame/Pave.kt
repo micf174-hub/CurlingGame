@@ -26,7 +26,7 @@ class Pave (var rayonP : Float, var hauteur : Float, var largeur : Float, val vi
         pavePaint.color = Color.RED
         canvas?.drawOval(r, pavePaint)
     }
-    fun launch(angle: Double) {
+    open fun launch(angle: Double) {
         canonpaveVitesseX=(canonpaveVitesse*Math.sin(angle)).toFloat()
         canonpaveVitesseY=(-canonpaveVitesse*Math.cos(angle)).toFloat()
         canonpaveOnScreen = true
