@@ -1,15 +1,20 @@
 package com.example.curlinggame
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
+import android.os.Bundle
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
-import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.DialogFragment
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -29,6 +34,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var shotsFired = 0
     var viesRestantes = 3
     var score = 0
+    var gameOver = false
+    val activity = context as FragmentActivity
     init    {
         FD.color = Color.GREEN
         TextPaint.textSize = width/20
@@ -87,6 +94,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.paveR = (w/20f)
         pave.launch(0.0)
 
+        TextPaint.setTextSize(w / 20f)
+        TextPaint.isAntiAlias = true
+
 
     }
     fun draw() {
@@ -111,7 +121,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
         pave.update(interval)
-        if (viesRestantes == 0) drawing = false
+        if (viesRestantes == 0) {
+            drawing = false
+            gameOver = true
+            montrerEcranFinal(R.string.lose)
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -154,4 +168,47 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
         override fun surfaceDestroyed(holder: SurfaceHolder) {
         }
+    fun gameOver () {
+        drawing = false
+        montrerEcranFinal(R.string.win)
+        gameOver = true
+    }
+    fun montrerEcranFinal(messageId: Int) {
+        class GameResult: DialogFragment() {
+            override fun onCreateDialog(bundle: Bundle?): Dialog {
+                val builder = AlertDialog.Builder(getActivity())
+                builder.setTitle(resources.getString(messageId))
+                builder.setMessage(resources.getString(R.string.results_format, shotsFired, score))
+                builder.setPositiveButton("Redémarrer le Jeu", DialogInterface.OnClickListener { _, _->newGame()})
+                return builder.create()
+            }
+        }
+        activity.runOnUiThread(
+                Runnable {
+                    val ft = activity.supportFragmentManager.beginTransaction()
+                    val prev =activity.supportFragmentManager.findFragmentByTag("dialog")
+                    if (prev != null) {
+                        ft.remove(prev)
+                    }
+                    ft.addToBackStack(null)
+                    val gameResult = GameResult()
+                    gameResult.setCancelable(false)
+                    gameResult.show(ft,"dialog")
+                }
+        )
+    }
+    fun newGame() {
+        cible.resetCible()
+        obstacle.resetObstacle()
+        pave.resetPave()
+        score = 0
+        shotsFired = 0
+        viesRestantes = 3
+        drawing = true
+        if (gameOver) {
+            gameOver = false
+            thread = Thread(this)
+            thread.start()
+        }
+    }
     }

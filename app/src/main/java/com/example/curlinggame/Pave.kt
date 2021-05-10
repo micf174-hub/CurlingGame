@@ -40,4 +40,7 @@ class Pave(val view: CurlingView) {
         paveB.y = paveR
 
     }
+    fun perdUneVie() {
+        if (intersect(ObstacleC)) CurlingView().viesRestantes -= 1 // Ca dépend de quel Obstacle!!!
+    }
 }

@@ -6,9 +6,10 @@ import java.util.*
 open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,var intervalC : Float, val  view: CurlingView) {
     val cible1Paint = Paint()
     val cible2Paint = Paint()
+    val nombreDeCibles = 10
 
     fun draw(canvas: Canvas) {
-        for (i in 0..10) {
+        for (i in 0..nombreDeCibles) {
             val r1 = RectF(largeur1 + (2 * i * intervalC), hauteur1, largeur1 + rayonC + (2 * i * intervalC), hauteur1 + rayonC)
             val r2 = RectF(largeur1 + (2 * i * intervalC), hauteur1 + 2 * intervalC, largeur1 + rayonC + (2 * i * intervalC),hauteur1 + 2 * intervalC + rayonC)
             if (i  % 2 == 0) {
@@ -33,6 +34,7 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
         if (Pave().intersect()) {
             Pave(this).resetPave()
             CurlingView(this,this,this).score += 1
+            if (CurlingView(this,this,this).score == nombreDeCibles ) view.gameOver()
         }
     }
 }
