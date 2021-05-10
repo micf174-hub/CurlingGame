@@ -28,7 +28,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val player = Player(0f, 0f, 0f,0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
     val obstacle1 = ObstacleC(0f, this)
-    val obstacle2 = ObstacleR(0f,0f,this,cible)
+    val obstacle2 = ObstacleR(0f,0f,this)
     val obstacle3 = ObstacleT(0f,this,cible)
     val pave = Pave( this,cible, obstacle1, obstacle2, obstacle3)
     var NB_S = 0
@@ -37,8 +37,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var gameOver = false
     val soundPool : SoundPool
     val soundMap : SparseIntArray
-    val activity = context as FragmentActivity
 
+    val activity = context as FragmentActivity
 
     init    {
         FD.color = Color.GREEN
