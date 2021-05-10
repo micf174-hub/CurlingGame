@@ -17,12 +17,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var height = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(0f, 0f, 0f,this)
+    val player = Player(0f, 0f, 0f,0f,this)
     val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
-    val pave = Pave( 0f,0f,0f,0f,this)
+    val pave = Pave( this)
     var NB_S = 0
 
     init    {
@@ -58,6 +58,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
         player.hauteur1 = (9 *h/10f)
         player.hauteur2= (8 *h/10f)
+        player.largeur = (w/2f)
         player.epaisseur = (w/20f)
         player.setRect()
         player.setr1()
@@ -77,11 +78,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.rayonP = (w/30f)
-        pave.hauteur = (95 *h/100f)
-        pave.largeur = (w/2f)
         pave.paveVitesse = (w/10f)
-        pave.setRect()
+
 
     }
     fun draw() {
