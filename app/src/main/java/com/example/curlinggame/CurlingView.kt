@@ -89,6 +89,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                     canvas.height.toFloat(), FD)
             player.draw(canvas)
+            if(pave.OnScreen)
             obstacle1.draw(canvas)
             obstacle2.draw(canvas)
             obstacle3.draw(canvas)
