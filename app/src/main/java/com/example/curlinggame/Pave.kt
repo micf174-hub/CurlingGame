@@ -17,7 +17,7 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
         paveB.x = view.width / 2f
         paveB.y = view.height - 2 * paveR
         paveVitesseX = (paveVitesse * Math.sin(angle)).toFloat()
-        paveVitesseY = (paveVitesse * Math.cos(-angle)).toFloat()
+        paveVitesseY = (paveVitesse * Math.cos(angle)).toFloat()
         OnScreen = true
     }
 

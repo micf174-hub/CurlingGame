@@ -131,7 +131,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         if (centerMinusX != 0.0f )
             angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())
         if (touchPoint.x < width / 2)
-            angle += Math.PI/2
+            angle += Math.PI
         player.alignement(angle)
         return angle
     }
