@@ -31,9 +31,10 @@ class Pave (val view : CurlingView, val cible : Cible) {
             paveB.x += (interval * paveVitesseX).toFloat()
             paveB.y += (interval * paveVitesseY).toFloat()
             if(paveB.x + paveR > view.width || paveB.x - paveR < 0){
-                paveVitesseX *= 1
+                paveVitesseX *= - 1
                 paveB.offset((paveVitesseX * interval).toFloat(),0f)
             }
+            else if()
         }
     }
 }

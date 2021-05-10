@@ -57,6 +57,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         height = h.toFloat()
 
         player.hauteur1 = (9 *h/10f)
+        player.hauteur2 = (8 *h/10f)
         player.largeur = (w/20f)
         player.epaisseur = (w/20f)
         player.setRect()
@@ -122,17 +123,18 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusY = height / 2 - touchPoint.y
+        val centerMinusX = width / 2 + touchPoint.x
         var angle = 0.0
-        if (centerMinusY != 0.0f)
-            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusY)
-        if (touchPoint.y > height / 2)
-            angle -= Math.PI
+        if (centerMinusX != 0.0f)
+            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusX)
+        if (touchPoint.x < width / 2)
         player.alignement(angle)
         return angle
     }
 
-        override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+
+
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
 
         }
 
