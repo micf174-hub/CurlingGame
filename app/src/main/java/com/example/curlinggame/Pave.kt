@@ -32,9 +32,11 @@ class Pave (var rayonP : Float, var hauteur : Float, var largeur : Float, val vi
     }
 
     fun update(interval: Double) {
+        var up = (interval * paveVitesse).toFloat()
         if (OnScreen) {
             playerB.x += (interval * paveVitesseX).toFloat()
             playerB.y += (interval * paveVitesseY).toFloat()
+            r.offset(0f, up)
         }
     }
 }
