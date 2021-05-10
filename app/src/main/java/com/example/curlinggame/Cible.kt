@@ -3,7 +3,7 @@ package com.example.curlinggame
 import android.graphics.*
 import java.util.*
 
-open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,var intervalC : Float, val  view: CurlingView) {
+open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,var intervalC : Float,val  view: CurlingView) {
     val cible1Paint = Paint()
     val cible2Paint = Paint()
     var r1 = RectF()
@@ -32,8 +32,9 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
         }
     }
 
-    fun ChocC() {
-
-    }
+    fun cibleTouchee () {
+            CurlingView(this,this,this).score += 1
+            if (CurlingView(this,this,this).score == nombreDeCibles ) view.gameOver()
+        }
 }
 

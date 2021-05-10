@@ -26,6 +26,14 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
         canvas?.drawCircle(paveB.x,paveB.y,paveR, pavePaint)
     }
 
+    fun resestPave(){
+        paveVitesse = 0f
+        paveVitesseX = 0f
+        paveVitesseY = 0f
+        paveB.x = view.width /2f
+        paveB.y = paveR
+    }
+
     fun update(interval: Double) {
         if (OnScreen) {
             paveB.x += (interval * paveVitesseX).toFloat()
@@ -47,7 +55,7 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
                 obstacle3.ChocO3(this)
             }
             else if(paveB.y+ paveR < cible.r2.top && paveB.x + paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){
-                cible.ChocC()
+                cible.cibleTouchee()
             }
             else if(paveB.y + paveR > view.height || paveB.y - paveR < 0) {
                 OnScreen = false
