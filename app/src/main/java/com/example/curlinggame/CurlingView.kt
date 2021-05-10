@@ -59,15 +59,15 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.hauteur1 = (9 *h/10f)
         player.hauteur2 = (8 *h/10f)
         player.largeur = (w/2f)
-        player.epaisseur = (w/20f)
+        player.epaisseur = (w/30f)
         player.setRect()
-        player.setr1(8 *h/10f)
+        player.setr1(9*h/10f)
 
         obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
 
         obstacle2.rayon2 = (w/20f)
-        obstacle2.vO1Init = (w/10f)
+        obstacle2.vO1Init = (w/2f)
         obstacle2.setRect()
 
         obstacle3.rayon3 = (w/20f)
@@ -79,7 +79,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.paveVitesse = (3 *h/2f)
+        pave.paveVitesse = (3f *h)
         pave.paveR = (w/50f)
         pave.launch(0.0)
 
@@ -126,12 +126,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width/100 - touchPoint.x
+        val centerMinusX = width/2 + touchPoint.x
         var angle = 0.0
         if (centerMinusX != 0.0f )
             angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())
-        if (touchPoint.x > width / 2)
-            angle += Math.PI
+        if (touchPoint.x < width / 2)
+            angle += Math.PI/2
         player.alignement(angle)
         return angle
     }

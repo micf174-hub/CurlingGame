@@ -16,8 +16,8 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
     fun launch(angle: Double) {
         paveB.x = view.width / 2f
         paveB.y = view.height - 2 * paveR
-        paveVitesseX = -(paveVitesse * Math.sin(angle)).toFloat()
-        paveVitesseY = -(paveVitesse * Math.cos(angle)).toFloat()
+        paveVitesseX = (paveVitesse * Math.sin(angle)).toFloat()
+        paveVitesseY = (paveVitesse * Math.cos(-angle)).toFloat()
         OnScreen = true
     }
 
@@ -46,14 +46,14 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
             else if(paveB.y+ paveR < obstacle3.r3.top && paveB.x + paveR < obstacle3.r3.right && paveB.x + paveR >  obstacle3.r3.left){
                 obstacle3.ChocO3(this)
             }
+            else if(paveB.y+ paveR < cible.r2.top && paveB.x + paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){
+                cible.ChocC()
+            }
             else if(paveB.y + paveR > view.height || paveB.y - paveR < 0) {
                 OnScreen = false
             }
 
 
-            else if(paveB.y+ paveR < cible.r2.top && paveB.x + paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){
-                cible.ChocC()
-            }
         }
     }
 }
