@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleT(var rayon3: Float, val view: CurlingView) {
+class ObstacleT(var rayon3: Float, val view: CurlingView,var cible: Cible) {
     val obstacleTPaint = Paint()
     val r3 = RectF(
         3*view.width / 4 - rayon3,
@@ -26,6 +26,11 @@ class ObstacleT(var rayon3: Float, val view: CurlingView) {
             3 * view.width / 4 + rayon3,
             view.height / 2 + rayon3
         )
+    }
+
+    fun ChocO3(pave : Pave){
+        pave.resetPave()
+
     }
 
 }

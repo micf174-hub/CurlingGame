@@ -18,11 +18,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var drawing = false
     lateinit var thread : Thread
     val player = Player(0f, 0f, 0f,0f,this)
-    val obstacle1 = ObstacleC(0f, this)
-    val obstacle2 = ObstacleR(0f,this)
-    val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
-    val pave = Pave( this,cible)
+    val obstacle1 = ObstacleC(0f, this,cible)
+    val obstacle2 = ObstacleR(0f,0f,this,cible)
+    val obstacle3 = ObstacleT(0f,this,cible)
+    val pave = Pave( this,cible, obstacle1, obstacle2, obstacle3)
     var NB_S = 0
 
     init    {
@@ -58,7 +58,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
         player.hauteur1 = (9 *h/10f)
         player.hauteur2 = (8 *h/10f)
-        player.largeur = (w/20f)
+        player.largeur = (w/2f)
         player.epaisseur = (w/20f)
         player.setRect()
         player.setr1(8 *h/10f)
@@ -67,6 +67,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         obstacle1.setRect()
 
         obstacle2.rayon2 = (w/20f)
+        obstacle2.vO1Init = (w/10f)
         obstacle2.setRect()
 
         obstacle3.rayon3 = (w/20f)
@@ -78,8 +79,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.paveVitesse = (3 *w/2f)
-        pave.paveR = (w/30f)
+        pave.paveVitesse = (3 *h/2f)
+        pave.paveR = (w/50f)
         pave.launch(0.0)
 
     }
@@ -102,6 +103,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
+        obstacle2.update(interval)
+
     }
 
     override fun onTouchEvent(e: MotionEvent): Boolean {
@@ -114,7 +117,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
 
     fun tir(event: MotionEvent) {
-        if (pave.OnScreen) {
+        if (!pave.OnScreen) {
             val angle = alignT(event)
             pave.launch(angle)
             ++NB_S
@@ -123,11 +126,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width / 2 + touchPoint.x
+        val centerMinusX = width/2 + touchPoint.x
         var angle = 0.0
-        if (centerMinusX != 0.0f)
-            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusX)
-        if (touchPoint.x < width / 2)
+        if (centerMinusX != 0.0f )
+            angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())
+        if (touchPoint.x > width / 2)
+            angle += Math.PI
         player.alignement(angle)
         return angle
     }
