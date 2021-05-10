@@ -20,7 +20,7 @@ class ObstacleR(var rayon2: Float, view : CurlingView) : Obstacle(rayon2, view) 
     }
 
     override fun interaction (){
-
+        obstacleRPaint.color = Color.MAGENTA
     }
 
     fun setRect() {
