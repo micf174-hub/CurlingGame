@@ -26,7 +26,7 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
         canvas?.drawCircle(paveB.x,paveB.y,paveR, pavePaint)
     }
 
-    fun resestPave(){
+    fun resetPave(){
         paveVitesse = 0f
         paveVitesseX = 0f
         paveVitesseY = 0f

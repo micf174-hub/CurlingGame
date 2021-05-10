@@ -33,8 +33,12 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
     }
 
     fun cibleTouchee () {
-            CurlingView(this,this,this).score += 1
-            if (CurlingView(this,this,this).score == nombreDeCibles ) view.gameOver()
+        view.score +=1
         }
+
+    fun resetC(){
+        r1 = RectF()
+        r2 = RectF()
+    }
 }
 

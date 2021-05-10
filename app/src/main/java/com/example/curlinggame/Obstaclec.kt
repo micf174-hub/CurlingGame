@@ -32,4 +32,6 @@ class ObstacleC(var rayon1: Float, val view: CurlingView, var cible: Cible) {
     }
 
 
+
+
 }

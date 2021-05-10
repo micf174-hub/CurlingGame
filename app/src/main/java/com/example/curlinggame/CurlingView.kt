@@ -1,14 +1,20 @@
 package com.example.curlinggame
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -24,6 +30,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle3 = ObstacleT(0f,this,cible)
     val pave = Pave( this,cible, obstacle1, obstacle2, obstacle3)
     var NB_S = 0
+    var viesRestantes = 3
+    var score = 0
+    var gameOver = false
+    val activity = context as FragmentActivity
+
 
     init    {
         FD.color = Color.GREEN
@@ -104,7 +115,54 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
         obstacle2.update(interval)
+        if(viesRestantes ==0){
+            gameOver = true
+            drawing = false
+            montrerEcranFinal(R.string.defaite)
+        }
 
+    }
+    fun gameOver () {
+        drawing = false
+        montrerEcranFinal(R.string.victoire)
+        gameOver = true
+    }
+    fun montrerEcranFinal(messageId: Int) {
+        class GameResult: DialogFragment() {
+            override fun onCreateDialog(bundle: Bundle?): Dialog {
+                val builder = AlertDialog.Builder(getActivity())
+                builder.setTitle(resources.getString(messageId))
+                builder.setMessage(resources.getString(R.string.results_format, NB_S, score))
+                builder.setPositiveButton("Redémarrer le Jeu", DialogInterface.OnClickListener { _, _->newGame()})
+                return builder.create()
+            }
+        }
+        activity.runOnUiThread(
+                Runnable {
+                    val ft = activity.supportFragmentManager.beginTransaction()
+                    val prev =activity.supportFragmentManager.findFragmentByTag("dialog")
+                    if (prev != null) {
+                        ft.remove(prev)
+                    }
+                    ft.addToBackStack(null)
+                    val gameResult = GameResult()
+                    gameResult.setCancelable(false)
+                    gameResult.show(ft,"dialog")
+                }
+        )
+    }
+    fun newGame() {
+        cible.resetC()
+        pave.resetPave()
+        score = 0
+        NB_S= 0
+        viesRestantes = 3
+        drawing = true
+        if (gameOver) {
+            gameOver = false
+            thread = Thread(this)
+            thread.start()
+        }
     }
 
     override fun onTouchEvent(e: MotionEvent): Boolean {
