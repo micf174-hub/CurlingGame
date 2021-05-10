@@ -1,4 +1,5 @@
 package com.example.curlinggame
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,7 +9,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import kotlin.random.Random
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -57,11 +57,10 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         height = h.toFloat()
 
         player.hauteur1 = (9 *h/10f)
-        player.hauteur2= (8 *h/10f)
         player.largeur = (w/2f)
         player.epaisseur = (w/20f)
         player.setRect()
-        player.setr1()
+        player.setr1(8 *h/10f)
 
         obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
@@ -78,7 +77,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.paveVitesse = (w/10f)
+        pave.paveVitesse = (3 *w/2f)
+        pave.paveR = (w/10f)
 
 
     }
@@ -102,6 +102,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.update(interval)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(e: MotionEvent): Boolean {
         val action = e.action
         if (action == MotionEvent.ACTION_DOWN

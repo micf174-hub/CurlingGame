@@ -20,7 +20,7 @@ class Player (var hauteur1: Float, var hauteur2 : Float, var largeur : Float, va
         r.set(view.width / 2 - view.width / 10 , hauteur1, view.width / 2 + view.width / 10 , view.height)
     }
 
-    fun setr1() {
+    fun setr1(hauteur2: Float) {
         r1.set(largeur, hauteur2)
     }
 
