@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
+import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -13,6 +14,7 @@ import android.view.SurfaceView
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val FD = Paint()
+    val TextPaint = Paint()
     var width = 0f
     var height = 0f
     var drawing = false
@@ -24,9 +26,13 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val cible = Cible(0f, 0f,0f,0f,this)
     val pave = Pave( this)
     var NB_S = 0
-
+    var shotsFired = 0
+    var viesRestantes = 3
+    var score = 0
     init    {
         FD.color = Color.GREEN
+        TextPaint.textSize = width/20
+        TextPaint.color = Color.BLACK
     }
 
     fun pause() {
@@ -88,6 +94,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             canvas = holder.lockCanvas()
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                     canvas.height.toFloat(), FD)
+            val formatted = String.format("%.2f", viesRestantes)
+            canvas.drawText("Il reste $formatted vies. ",
+                    30f, 50f, TextPaint)
             player.draw(canvas)
             if(pave.OnScreen)
             obstacle1.draw(canvas)
@@ -102,6 +111,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
         pave.update(interval)
+        if (viesRestantes == 0) drawing = false
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -29,5 +29,12 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
             canvas.drawRect(r2,cible2Paint)
         }
     }
+    fun cibleTouchee () {
+        if (Pave().intersect()) {
+            Pave(this).resetPave()
+            CurlingView(this,this,this).score += 1
+        }
+    }
 }
+
 

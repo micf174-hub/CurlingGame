@@ -2,7 +2,7 @@ package com.example.curlinggame
 
 import android.graphics.*
 
-class Pave (val view : CurlingView) {
+class Pave(val view: CurlingView) {
     val pavePaint = Paint()
     var paveB = PointF()
     var paveVitesse = 0f
@@ -31,5 +31,13 @@ class Pave (val view : CurlingView) {
             paveB.y += (interval * paveVitesseY).toFloat()
 
         }
+    }
+    fun resetPave() {
+        paveVitesse = 0f
+        paveVitesseX = 0f
+        paveVitesseY = 0f
+        paveB.x = view.width / 2f
+        paveB.y = paveR
+
     }
 }
