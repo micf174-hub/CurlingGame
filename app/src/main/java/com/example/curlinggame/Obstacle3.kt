@@ -28,10 +28,7 @@ class ObstacleT(var rayon3: Float, val view: CurlingView) : Obstacle() {
         )
     }
 
-    fun ChocO3(pave : Pave){
-        view.viesRestantes -= 1
 
-    }
 
 
 }

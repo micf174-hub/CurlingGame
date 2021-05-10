@@ -32,10 +32,6 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
         }
     }
 
-    fun cibleTouchee () {
-        view.score +=1
-        }
-
     fun resetC(){
         r1 = RectF()
         r2 = RectF()

@@ -8,15 +8,15 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
-import android.media.SoundPool
+import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.SparseIntArray
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
+
 
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -36,16 +36,15 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var viesRestantes = 3
     var score = 0
     var gameOver = false
-
-
     val activity = context as FragmentActivity
+
 
     init    {
         FD.color = Color.GREEN
-        TextPaint.textSize = width/20
-        TextPaint.color = Color.BLACK
+        TextPaint.textSize = width/10
+        TextPaint.color = Color.WHITE
+        viesRestantes = 3
     }
-
     fun pause() {
         drawing = false
         thread.join()
@@ -67,8 +66,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             previousFrameTime = currentTime
         }
     }
-
-
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -102,6 +99,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.paveR = (w/50f)
         pave.launch(0.0)
 
+        newGame()
+
     }
     fun draw() {
         if (holder.surface.isValid) {
@@ -124,6 +123,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.update(interval)
         obstacle2.update(interval)
         if(viesRestantes ==0){
+            viesRestantes = 0
             gameOver = true
             drawing = false
             montrerEcranFinal(R.string.defaite)
@@ -161,9 +161,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
     fun newGame() {
         cible.resetC()
-        pave.resetPave()
         score = 0
-        NB_S= 0
+        NB_S = 0
         viesRestantes = 3
         drawing = true
         if (gameOver) {
@@ -172,6 +171,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             thread.start()
         }
     }
+
+
 
     override fun onTouchEvent(e: MotionEvent): Boolean {
         val action = e.action
@@ -192,16 +193,27 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width/2 + touchPoint.x
+        val centerMinusX = width/2 - touchPoint.x
         var angle = 0.0
         if (centerMinusX != 0.0f )
             angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())
-        if (touchPoint.x < width / 2)
+        if (touchPoint.x > width / 2)
             angle += Math.PI
         player.alignement(angle)
         return angle
     }
 
+    fun Pvie(){
+        viesRestantes -= 1
+    }
+
+    fun score(){
+        score += 1
+    }
+
+    fun paveCadeau(){
+        pave.launch(0.0)
+    }
 
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {

@@ -21,7 +21,7 @@ class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) 
     }
 
     override fun interaction (){
-        obstacleRPaint.color = Color.MAGENTA
+        vO1Init += 10f
     }
 
     fun update(interval: Double) {
