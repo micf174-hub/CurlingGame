@@ -22,7 +22,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val obstacle2 = ObstacleR(0f,this)
     val obstacle3 = ObstacleT(0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
-    val pave = Pave( this)
+    val pave = Pave( this,cible)
     var NB_S = 0
 
     init    {
@@ -57,7 +57,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         height = h.toFloat()
 
         player.hauteur1 = (9 *h/10f)
-        player.largeur = (w/2f)
+        player.largeur = (w/20f)
         player.epaisseur = (w/20f)
         player.setRect()
         player.setr1(8 *h/10f)
@@ -78,7 +78,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
 
         pave.paveVitesse = (3 *w/2f)
-        pave.paveR = (w/10f)
+        pave.paveR = (w/30f)
         pave.launch(0.0)
 
     }
@@ -99,11 +99,10 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
 
     fun updatePositions(elapsedTimeMS: Double) {
-        val interval = elapsedTimeMS / 1000.0
+        val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(e: MotionEvent): Boolean {
         val action = e.action
         if (action == MotionEvent.ACTION_DOWN
@@ -114,7 +113,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
 
     fun tir(event: MotionEvent) {
-        if (! pave.OnScreen) {
+        if (pave.OnScreen) {
             val angle = alignT(event)
             pave.launch(angle)
             ++NB_S
@@ -123,12 +122,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusY = width / 2 - touchPoint.x
+        val centerMinusY = height / 2 - touchPoint.y
         var angle = 0.0
         if (centerMinusY != 0.0f)
-            angle = Math.atan((touchPoint.x).toDouble()/ centerMinusY)
-        if (touchPoint.x > width / 2)
-            angle += Math.PI
+            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusY)
+        if (touchPoint.y > height / 2)
+            angle -= Math.PI
         player.alignement(angle)
         return angle
     }
