@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleC(var rayon1: Float, val view: CurlingView) {
+class ObstacleC(var rayon1: Float, val view: CurlingView) : Obstacle() {
     val obstacleCPaint = Paint()
     val r1 = RectF(
             view.width / 4 - rayon1,
@@ -26,13 +26,7 @@ class ObstacleC(var rayon1: Float, val view: CurlingView) {
             view.height / 2 + rayon1
                 )
     }
-
     override fun interaction (){
-        pave.resetPave()
+        obstacleCPaint.color = Color.BLUE
     }
-
-
-
-
-
 }

@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentActivity
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val FD = Paint()
+    val TextPaint = Paint()
     var width = 0f
     var height = 0f
     var drawing = false
@@ -29,19 +30,20 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val cible = Cible(0f, 0f,0f,0f,this)
     val obstacle1 = ObstacleC(0f, this)
     val obstacle2 = ObstacleR(0f,0f,this)
-    val obstacle3 = ObstacleT(0f,this,cible)
+    val obstacle3 = ObstacleT(0f,this)
     val pave = Pave( this,cible, obstacle1, obstacle2, obstacle3)
     var NB_S = 0
     var viesRestantes = 3
     var score = 0
     var gameOver = false
-    val soundPool : SoundPool
-    val soundMap : SparseIntArray
+
 
     val activity = context as FragmentActivity
 
     init    {
         FD.color = Color.GREEN
+        TextPaint.textSize = width/20
+        TextPaint.color = Color.BLACK
     }
 
     fun pause() {
@@ -65,9 +67,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             previousFrameTime = currentTime
         }
     }
-    open fun playObstacleSound() {
-        soundPool.play(soundMap.get(0), 1f, 1f, 1, 0, 1f)
-    }
+
 
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
