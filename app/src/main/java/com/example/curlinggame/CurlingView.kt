@@ -77,8 +77,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.paveVitesse = (3 *w/2f)
-        pave.paveR = (w/10f)
+        pave.paveVitesse = (h/2f)
+        pave.paveR = (w/20f)
+        pave.launch(0.0)
 
 
     }
@@ -122,11 +123,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusY = height / 2 - touchPoint.y
+        val centerMinusY = width / 2 - touchPoint.x
         var angle = 0.0
         if (centerMinusY != 0.0f)
             angle = Math.atan((touchPoint.x).toDouble()/ centerMinusY)
-        if (touchPoint.y > height / 2)
+        if (touchPoint.x > width / 2)
             angle += Math.PI
         player.alignement(angle)
         return angle
