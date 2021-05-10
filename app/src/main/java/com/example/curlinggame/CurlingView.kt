@@ -4,12 +4,18 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
+import android.media.AudioAttributes
+import android.media.SoundPool
+import android.os.Build
 import android.util.AttributeSet
+import android.util.SparseIntArray
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.annotation.RequiresApi
 import kotlin.random.Random
 
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class CurlingView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0): SurfaceView(context, attributes,defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val FD = Paint()
@@ -24,9 +30,27 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val cible = Cible(0f, this)
     val pave = Pave( 0f,0f,0f,this)
     var shotsFired = 0
+    val soundPool: SoundPool
+    val soundMap: SparseIntArray
 
     init    {
         FD.color = Color.GREEN
+
+        val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build()
+
+        soundPool = SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(audioAttributes)
+                .build()
+        soundMap = SparseIntArray(3)
+        soundMap.put(0, soundPool.load(context, R.raw.BEEP_Bip_de_caisse, 1))
+    }
+
+    open fun playObstacleSound() {
+        soundPool.play(soundMap.get(0), 1f, 1f, 1, 0, 1f)
     }
 
     fun pause() {
