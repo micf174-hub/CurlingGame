@@ -12,11 +12,6 @@ class Pave (val view : CurlingView) {
     var paveR = 0f
 
 
-    fun draw(canvas: Canvas?) {
-        pavePaint.color = Color.RED
-        canvas?.drawCircle(paveB.x,paveB.y,paveR, pavePaint)
-    }
-
 
     fun launch(angle: Double) {
         paveB.x = view.width / 2f
@@ -24,6 +19,11 @@ class Pave (val view : CurlingView) {
         paveVitesseX = (paveVitesse * Math.sin(angle)).toFloat()
         paveVitesseY = (- paveVitesse * Math.cos(angle)).toFloat()
         OnScreen = true
+    }
+
+    fun draw(canvas: Canvas?) {
+        pavePaint.color = Color.RED
+        canvas?.drawCircle(paveB.x,paveB.y,paveR, pavePaint)
     }
 
     fun update(interval: Double) {
