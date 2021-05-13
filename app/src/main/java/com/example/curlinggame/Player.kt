@@ -25,7 +25,7 @@ class Player (var hauteur1: Float, var hauteur2 : Float, var largeur : Float, va
     }
 
     fun alignement(angle: Double) {
-        r1.x = (view.height - (hauteur1)* Math.sin(angle)).toFloat()
-        r1.y = (view.height-(hauteur1) * Math.cos(angle)).toFloat()
+        r1.x = (view.width/2 + hauteur1* Math.sin(angle)).toFloat()
+        r1.y = (hauteur1 - hauteur1 * Math.cos(angle)).toFloat()
     }
 }

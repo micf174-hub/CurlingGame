@@ -44,6 +44,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         TextPaint.textSize = width/10
         TextPaint.color = Color.WHITE
         viesRestantes = 3
+
     }
     fun pause() {
         drawing = false
@@ -72,12 +73,12 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         width = w.toFloat()
         height = h.toFloat()
 
-        player.hauteur1 = (9 *h/10f)
-        player.hauteur2 = (8 *h/10f)
+        player.hauteur1 = (8 *h/10f)
+        player.hauteur2 = (2 *h/10f)
         player.largeur = (w/2f)
         player.epaisseur = (w/30f)
         player.setRect()
-        player.setr1(9*h/10f)
+        player.setr1(2*h/10f)
 
         obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
@@ -100,6 +101,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.launch(0.0)
 
         newGame()
+        score()
 
     }
     fun draw() {
@@ -122,6 +124,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
         obstacle2.update(interval)
+        obstacle1.update(interval)
         if(viesRestantes ==0){
             viesRestantes = 0
             gameOver = true
@@ -193,11 +196,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width/2 - touchPoint.x
+        val centerMinusX = width/2 + touchPoint.x
         var angle = 0.0
         if (centerMinusX != 0.0f )
-            angle = Math.atan(centerMinusX / (touchPoint.y).toDouble())
-        if (touchPoint.x > width / 2)
+            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusX )
+        if (touchPoint.x < width / 2)
             angle += Math.PI
         player.alignement(angle)
         return angle
@@ -212,7 +215,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     }
 
     fun paveCadeau(){
-        pave.launch(0.0)
+        viesRestantes +=1
     }
 
 

@@ -27,6 +27,10 @@ class ObstacleC(var rayon1: Float, val view: CurlingView) : Obstacle() {
                 )
     }
     override fun interaction (){
-        obstacleCPaint.color = Color.BLUE
+        obstacleCPaint.color = Color.YELLOW
+    }
+
+    fun update(interval: Double){
+        obstacleCPaint.color = Color.YELLOW
     }
 }
