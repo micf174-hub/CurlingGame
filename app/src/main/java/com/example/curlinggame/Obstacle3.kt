@@ -6,32 +6,31 @@ import android.graphics.Paint
 import android.graphics.RectF
 
 class ObstacleT(val view : CurlingView) : Obstacle(view.width/10f,view.width/10f) {
-
+    var r3 = RectF(
+            3*view.width / 4 - rayonO,
+            view.height / 2 - rayonO,
+            3* view.width / 4 + rayonO,
+            view.height / 2 + rayonO
+    )
     override fun draw(canvas: Canvas?) {
         val obstaclePaint = Paint()
-        var r = RectF(
-                3*view.width / 4 - rayonO,
-                view.height / 2 - rayonO,
-                3* view.width / 4 + rayonO,
-                view.height / 2 + rayonO
-        )
         obstaclePaint.color = Color.GRAY
-        canvas?.drawRect(r, obstaclePaint)
+        canvas?.drawRect(r3, obstaclePaint)
     }
     override fun update(interval: Double){
         var vO1 = vitesseO
         var up = (interval * vO1).toFloat()
-        r.offset(up, 0f)
-        if (r.left < r.left -30f || r.right > r.right + 30f) {
+        r3.offset(up, 0f)
+        if (r3.left < r.left -30f || r3.right > r3.right + 30f) {
             vO1 *= -1
             up = (interval * vO1).toFloat()
-            r.offset(up, 0f)
+            r3.offset(up, 0f)
         }
     }
 
     override fun setRect() {
 
-        r.set(
+        r3.set(
             3 * view.width / 4 - rayonO,
             view.height / 2 - rayonO,
             3 * view.width / 4 + rayonO,

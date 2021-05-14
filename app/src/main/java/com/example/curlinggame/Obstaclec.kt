@@ -7,19 +7,19 @@ import android.graphics.RectF
 
 class ObstacleC( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f) {
 
+    var r1 = RectF(view.width / 4 - rayonO,
+            view.height/2 - rayonO,
+            view.width / 4 + rayonO,
+            view.height / 2 + rayonO)
+
 
     override fun draw(canvas: Canvas?) {
         var obstaclePaint = Paint()
-        var r = RectF(view.width / 4 - rayonO,
-        view.height/2 - rayonO,
-        view.width / 4 + rayonO,
-        view.height / 2 + rayonO)
-
         obstaclePaint.color = Color.BLUE
-        canvas?.drawRect(r, obstaclePaint)
+        canvas?.drawRect(r1, obstaclePaint)
     }
     override fun setRect() {
-        r.set(view.width / 4 - rayonO,
+        r1.set(view.width / 4 - rayonO,
             view.height/2 - rayonO,
             view.width / 4 + rayonO,
             view.height / 2 + rayonO
@@ -29,11 +29,11 @@ class ObstacleC( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f
     override fun update(interval: Double){
         var vO1 = vitesseO
         var up = (interval * vO1).toFloat()
-        r.offset(up, 0f)
+        r1.offset(up, 0f)
         if (r.left < r.left -30f || r.right > r.right + 30f) {
             vO1 *= -1
             up = (interval * vO1).toFloat()
-            r.offset(up, 0f)
+            r1.offset(up, 0f)
         }
     }
 

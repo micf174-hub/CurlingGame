@@ -86,7 +86,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         obstacle.vitesseO = (w/10f)
         obstacle.rayonO = (w /10f)
         obstacle.setRect()
-        obstacle.DetecO()
         obstacle1.setRect()
         obstacle2.setRect()
         obstacle3.setRect()
