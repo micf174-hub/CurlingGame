@@ -9,8 +9,7 @@ import android.graphics.RectF
 open class Obstacle (var vitesseO : Float, var rayonO : Float ) {
 
     var obstaclePaint = Paint()
-    var r = RectF(30f,70f,40f,50f)
-    var rayonO2 = rayonO
+    var r = RectF(0f,0f,0f,0f)
 
     open fun draw(canvas: Canvas?) {
         obstaclePaint.color = Color.BLACK
@@ -31,9 +30,5 @@ open class Obstacle (var vitesseO : Float, var rayonO : Float ) {
     open fun setRect(){
         r.set(r.left,r.top,r.right,r.bottom)
 
-    }
-
-    open fun DetecO(){
-        obstaclePaint.color = Color.GREEN
     }
 }

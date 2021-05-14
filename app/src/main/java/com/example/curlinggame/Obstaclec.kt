@@ -10,19 +10,19 @@ class ObstacleC( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f
 
     override fun draw(canvas: Canvas?) {
         var obstaclePaint = Paint()
-        r.left = view.width / 4 - rayonO2
-        r.top = view.height/2 - rayonO2
-        r.right = view.width / 4 + rayonO2
-        r.bottom = view.height / 2 + rayonO2
+        var r = RectF(view.width / 4 - rayonO,
+        view.height/2 - rayonO,
+        view.width / 4 + rayonO,
+        view.height / 2 + rayonO)
 
         obstaclePaint.color = Color.BLUE
         canvas?.drawRect(r, obstaclePaint)
     }
     override fun setRect() {
-        r.set(view.width / 4 - rayonO2,
-            view.height/2 - rayonO2,
-            view.width / 4 + rayonO2,
-            view.height / 2 + rayonO2
+        r.set(view.width / 4 - rayonO,
+            view.height/2 - rayonO,
+            view.width / 4 + rayonO,
+            view.height / 2 + rayonO
                 )
     }
 
@@ -37,7 +37,4 @@ class ObstacleC( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f
         }
     }
 
-    override fun DetecO(){
-        view.viesRestantes+=1
-    }
 }

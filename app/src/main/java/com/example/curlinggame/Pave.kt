@@ -50,15 +50,16 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle : Obstacle) 
                 paveVitesseY *= - 1
             }
             else if(paveB.y+ paveR < obstacle.r.top  && paveB.x - paveR < obstacle.r.right && paveB.x + paveR >  obstacle.r.left){
-                obstacle.DetecO()
+                view.VM()
             }
 
             else if(paveB.y+ paveR < obstacle.r.top && paveB.x - paveR < obstacle.r.right && paveB.x +paveR >  obstacle.r.left){
-                obstacle.DetecO()
+                view.VM()
             }
 
             else if(paveB.y+ paveR < cible.r2.top && paveB.x - paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){
-                cible.score()
+                view.score()
+                cible.resetC()
             }
             else if(paveB.y + paveR > view.height || paveB.y + paveR < 0) {
                 OnScreen = false

@@ -84,7 +84,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.setr1(8*h/10f)
 
         obstacle.vitesseO = (w/10f)
-        obstacle.rayonO2 = (w /10f)
+        obstacle.rayonO = (w /10f)
         obstacle.setRect()
         obstacle.DetecO()
         obstacle1.setRect()
@@ -211,6 +211,13 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         return angle
     }
 
+    fun VM(){
+        viesRestantes-=1
+    }
+
+    fun score(){
+        score +=1
+    }
 
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {

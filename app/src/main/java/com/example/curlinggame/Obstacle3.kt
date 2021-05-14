@@ -10,10 +10,10 @@ class ObstacleT(val view : CurlingView) : Obstacle(view.width/10f,view.width/10f
     override fun draw(canvas: Canvas?) {
         val obstaclePaint = Paint()
         var r = RectF(
-                3*view.width / 4 - rayonO2,
-                view.height / 2 - rayonO2,
-                3* view.width / 4 + rayonO2,
-                view.height / 2 + rayonO2
+                3*view.width / 4 - rayonO,
+                view.height / 2 - rayonO,
+                3* view.width / 4 + rayonO,
+                view.height / 2 + rayonO
         )
         obstaclePaint.color = Color.GRAY
         canvas?.drawRect(r, obstaclePaint)
@@ -32,14 +32,12 @@ class ObstacleT(val view : CurlingView) : Obstacle(view.width/10f,view.width/10f
     override fun setRect() {
 
         r.set(
-            3 * view.width / 4 - rayonO2,
-            view.height / 2 - rayonO2,
-            3 * view.width / 4 + rayonO2,
-            view.height / 2 + rayonO2
+            3 * view.width / 4 - rayonO,
+            view.height / 2 - rayonO,
+            3 * view.width / 4 + rayonO,
+            view.height / 2 + rayonO
         )
     }
 
-    override fun DetecO() {
-        view.viesRestantes -= 1
-    }
+
 }
