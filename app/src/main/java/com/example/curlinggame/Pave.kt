@@ -4,7 +4,7 @@ import android.graphics.*
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC , val obstacle2 : ObstacleR, val obstacle3 : ObstacleT) {
+class Pave (val view : CurlingView, val cible : Cible, val obstacle : Obstacle) {
     val pavePaint = Paint()
     var paveB = PointF()
     var paveVitesse = 0f
@@ -46,14 +46,15 @@ class Pave (val view : CurlingView, val cible : Cible, val obstacle1: ObstacleC 
                 paveB.offset((paveVitesseX * interval).toFloat(),0f)
             }
 
-            else if(paveB.y+ paveR < obstacle2.r2.top && paveB.x - paveR < obstacle2.r2.right && paveB.x + paveR >  obstacle2.r2.left) {
+            else if(paveB.y+ paveR < obstacle.r.top && paveB.x - paveR < obstacle.r.right && paveB.x + paveR >  obstacle.r.left) {
                 paveVitesseY *= - 1
             }
-            else if(paveB.y+ paveR < obstacle1.r1.top  && paveB.x - paveR < obstacle1.r1.right && paveB.x + paveR >  obstacle1.r1.left){
-                obstacle1.paveCadeau()
+            else if(paveB.y+ paveR < obstacle.r.top  && paveB.x - paveR < obstacle.r.right && paveB.x + paveR >  obstacle.r.left){
+                obstacle.DetecO()
             }
 
-            else if(paveB.y+ paveR < obstacle3.r3.top && paveB.x - paveR < obstacle3.r3.right && paveB.x +paveR >  obstacle3.r3.left){
+            else if(paveB.y+ paveR < obstacle.r.top && paveB.x - paveR < obstacle.r.right && paveB.x +paveR >  obstacle.r.left){
+                obstacle.DetecO()
             }
 
             else if(paveB.y+ paveR < cible.r2.top && paveB.x - paveR < cible.r2.right && paveB.x + paveR >  cible.r2.left){

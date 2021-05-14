@@ -5,33 +5,39 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleC(var rayon1: Float, val view: CurlingView) : Obstacle() {
-    val obstacleCPaint = Paint()
-    val r1 = RectF(
-            view.width / 4 - rayon1,
-            view.height/2 - rayon1,
-            view.width / 4 + rayon1,
-            view.height / 2 + rayon1
-        )
+class ObstacleC( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f) {
 
-    fun draw(canvas: Canvas?) {
-        obstacleCPaint.color = Color.BLUE
-        canvas?.drawRect(r1, obstacleCPaint)
+
+    override fun draw(canvas: Canvas?) {
+        var obstaclePaint = Paint()
+        r.left = view.width / 4 - rayonO
+        r.top = view.height/2 - rayonO
+        r.right = view.width / 4 + rayonO
+        r.bottom = view.height / 2 + rayonO
+
+        obstaclePaint.color = Color.BLUE
+        canvas?.drawRect(r, obstaclePaint)
     }
-
-    fun setRect() {
-        r1.set(view.width / 4 - rayon1,
-            view.height/2 - rayon1,
-            view.width / 4 + rayon1,
-            view.height / 2 + rayon1
+    override fun setRect() {
+        r.set(view.width / 4 - rayonO,
+            view.height/2 - rayonO,
+            view.width / 4 + rayonO,
+            view.height / 2 + rayonO
                 )
     }
 
-    fun update(interval: Double){
-        obstacleCPaint.color = Color.YELLOW
+    override fun update(interval: Double){
+        var vO1 = vitesseO
+        var up = (interval * vO1).toFloat()
+        r.offset(up, 0f)
+        if (r.left < r.left -30f || r.right > r.right + 30f) {
+            vO1 *= -1
+            up = (interval * vO1).toFloat()
+            r.offset(up, 0f)
+        }
     }
 
-    open fun paveCadeau(){
-        view.viesRestantes +=1
+    override fun DetecO(){
+        view.viesRestantes+=1
     }
 }
