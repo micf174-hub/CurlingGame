@@ -20,9 +20,7 @@ class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) 
                 view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayon2)
     }
 
-    override fun interaction() {
-        vO1Init += 10f
-    }
+
 
     fun update(interval: Double) {
         var up = (interval * vO1).toFloat()

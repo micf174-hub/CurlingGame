@@ -124,7 +124,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
-        obstacle2.update(interval)
         obstacle1.update(interval)
         if(viesRestantes ==0){
             viesRestantes = 0
