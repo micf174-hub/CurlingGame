@@ -7,15 +7,15 @@ import android.graphics.RectF
 
 class ObstacleR( val view: CurlingView) : Obstacle(view.width/10f,view.width/10f) {
 
-    var r1 = RectF(view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayonO)
+    var r1 = RectF(view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayonO2)
     override fun draw(canvas: Canvas?) {
-        var obstaclePaint = Paint()
+        val obstaclePaint = Paint()
         obstaclePaint.color = Color.RED
-        canvas?.drawCircle(view.width / 2, view.height / 2, rayonO, obstaclePaint)
+        canvas?.drawCircle(view.width / 2, view.height / 2, rayonO2, obstaclePaint)
     }
 
     override fun setRect() {
-        r1.set(view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayonO)
+        r1.set(view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayonO2)
     }
 
 

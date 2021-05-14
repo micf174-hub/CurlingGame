@@ -29,6 +29,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     val player = Player(0f, 0f, 0f,0f,this)
     val cible = Cible(0f, 0f,0f,0f,this)
     val obstacle = Obstacle(0f,0f)
+    val obstacle1 = ObstacleC(this)
+    val obstacle2 = ObstacleR(this)
+    val obstacle3 = ObstacleT(this)
     val pave = Pave( this,cible, obstacle)
     var NB_S = 0
     var viesRestantes = 3
@@ -81,9 +84,13 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.setr1(8*h/10f)
 
         obstacle.vitesseO = (w/10f)
-        obstacle.rayonO = (w /10f)
+        obstacle.rayonO2 = (w /10f)
         obstacle.setRect()
         obstacle.DetecO()
+        obstacle1.setRect()
+        obstacle2.setRect()
+        obstacle3.setRect()
+
 
         cible.rayonC = (w/15f)
         cible.intervalC = (w/20f)
@@ -94,6 +101,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         pave.paveVitesse = (3f *h/2)
         pave.paveR = (w/50f)
         pave.launch(0.0)
+
+        TextPaint.setTextSize(w / 20f)
+        TextPaint.isAntiAlias = true
 
         newGame()
 
@@ -106,6 +116,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             player.draw(canvas)
             if(pave.OnScreen)
             obstacle.draw(canvas)
+            obstacle1.draw(canvas)
+            obstacle2.draw(canvas)
+            obstacle3.draw(canvas)
             cible.draw(canvas)
             pave.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
@@ -116,6 +129,9 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         val interval = elapsedTimeMS / 5000.0
         pave.update(interval)
         obstacle.update(interval)
+        obstacle1.update(interval)
+        obstacle2.update(interval)
+        obstacle3.update(interval)
         if(viesRestantes ==0){
             viesRestantes = 0
             gameOver = true
