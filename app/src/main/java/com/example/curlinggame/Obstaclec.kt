@@ -26,11 +26,12 @@ class ObstacleC(var rayon1: Float, val view: CurlingView) : Obstacle() {
             view.height / 2 + rayon1
                 )
     }
-    override fun interaction (){
-        obstacleCPaint.color = Color.YELLOW
-    }
 
     fun update(interval: Double){
         obstacleCPaint.color = Color.YELLOW
+    }
+
+    open fun paveCadeau(){
+        view.viesRestantes +=1
     }
 }

@@ -36,5 +36,9 @@ open class Cible (var hauteur1 : Float, var largeur1: Float ,var rayonC : Float,
         r1 = RectF()
         r2 = RectF()
     }
+
+    fun score(){
+        view.score += 1
+    }
 }
 

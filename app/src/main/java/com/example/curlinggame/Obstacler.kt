@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) : Obstacle(){
+class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) : Obstacle() {
     val obstacleRPaint = Paint()
     val r2 = RectF(view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayon2)
     var vO1 = vO1Init
@@ -20,12 +20,12 @@ class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) 
                 view.width / 2 - view.width / 10, view.height / 2, view.width / 2 + view.width / 10, view.height / 2 + rayon2)
     }
 
-    override fun interaction (){
+    override fun interaction() {
         vO1Init += 10f
     }
 
     fun update(interval: Double) {
-        var up = (interval * 5* vO1).toFloat()
+        var up = (interval * vO1).toFloat()
         r2.offset(up, 0f)
         if (r2.left < view.width / 2 + 30f || r2.right > view.width / 2 + 30f) {
             vO1 *= -1
@@ -33,5 +33,4 @@ class ObstacleR( var rayon2: Float ,var vO1Init : Float,val view : CurlingView) 
             r2.offset(up, 0f)
         }
     }
-
 }

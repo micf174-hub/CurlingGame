@@ -36,6 +36,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
     var viesRestantes = 3
     var score = 0
     var gameOver = false
+    var totalElapsedTime = 0.0
     val activity = context as FragmentActivity
 
 
@@ -61,7 +62,8 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         var previousFrameTime = System.currentTimeMillis()
         while (drawing) {
             val currentTime = System.currentTimeMillis()
-            val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
+            val elapsedTimeMS:Double = (currentTime-previousFrameTime).toDouble()
+            totalElapsedTime += elapsedTimeMS / 1000.0
             updatePositions(elapsedTimeMS)
             draw()
             previousFrameTime = currentTime
@@ -78,7 +80,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         player.largeur = (w/2f)
         player.epaisseur = (w/30f)
         player.setRect()
-        player.setr1(2*h/10f)
+        player.setr1(8*h/10f)
 
         obstacle1.rayon1 = (w/20f)
         obstacle1.setRect()
@@ -96,12 +98,11 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         cible.hauteur1 = (w/20f)
 
 
-        pave.paveVitesse = (3f *h)
+        pave.paveVitesse = (3f *h/2)
         pave.paveR = (w/50f)
         pave.launch(0.0)
 
         newGame()
-        score()
 
     }
     fun draw() {
@@ -143,7 +144,7 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
             override fun onCreateDialog(bundle: Bundle?): Dialog {
                 val builder = AlertDialog.Builder(getActivity())
                 builder.setTitle(resources.getString(messageId))
-                builder.setMessage(resources.getString(R.string.results_format, NB_S, score))
+                builder.setMessage(resources.getString(R.string.results_format, NB_S, totalElapsedTime))
                 builder.setPositiveButton("Redémarrer le Jeu", DialogInterface.OnClickListener { _, _->newGame()})
                 return builder.create()
             }
@@ -175,8 +176,6 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
         }
     }
 
-
-
     override fun onTouchEvent(e: MotionEvent): Boolean {
         val action = e.action
         if (action == MotionEvent.ACTION_DOWN
@@ -196,37 +195,22 @@ class CurlingView @JvmOverloads constructor (context: Context, attributes: Attri
 
     fun alignT(event: MotionEvent): Double {
         val touchPoint = Point(event.x.toInt(), event.y.toInt())
-        val centerMinusX = width/2 + touchPoint.x
+        val centerMinusX = width/2 - touchPoint.x
         var angle = 0.0
         if (centerMinusX != 0.0f )
-            angle = Math.atan((touchPoint.y).toDouble()/ centerMinusX )
-        if (touchPoint.x < width / 2)
+            angle = Math.atan(centerMinusX/ (touchPoint.y).toDouble() )
+        if (touchPoint.x > width / 2)
             angle += Math.PI
         player.alignement(angle)
         return angle
     }
 
-    fun Pvie(){
-        viesRestantes -= 1
-    }
-
-    fun score(){
-        score += 1
-    }
-
-    fun paveCadeau(){
-        viesRestantes +=1
-    }
 
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-
         }
-
-        override fun surfaceCreated(holder: SurfaceHolder) {
-
+    override fun surfaceCreated(holder: SurfaceHolder) {
         }
-
-        override fun surfaceDestroyed(holder: SurfaceHolder) {
+    override fun surfaceDestroyed(holder: SurfaceHolder) {
         }
     }

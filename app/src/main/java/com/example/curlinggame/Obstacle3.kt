@@ -28,6 +28,10 @@ class ObstacleT(var rayon3: Float, val view: CurlingView) : Obstacle() {
         )
     }
 
+    fun Pvie(){
+        view.viesRestantes -= 1
+    }
+
 
 
 
